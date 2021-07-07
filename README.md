@@ -1,2 +1,2 @@
-# Chatbot_As_Json_File
+# Chatbot As Json File
 Exporting the chatbot as a jason file
