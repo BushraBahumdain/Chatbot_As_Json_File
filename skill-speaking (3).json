@@ -1,0 +1,399 @@
+{
+  "intents": [
+    {
+      "intent": "About_You",
+      "examples": [
+        {
+          "text": "are you happy"
+        },
+        {
+          "text": "do you like your job"
+        },
+        {
+          "text": "how are you ?"
+        },
+        {
+          "text": "where are you from"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "bye",
+      "examples": [
+        {
+          "text": "bye"
+        },
+        {
+          "text": "good bye"
+        },
+        {
+          "text": "see you later"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "General_About_You",
+      "examples": [
+        {
+          "text": "How old are you?"
+        },
+        {
+          "text": "years"
+        }
+      ],
+      "description": "Request generic personal attributes."
+    },
+    {
+      "intent": "greeting",
+      "examples": [
+        {
+          "text": "hello"
+        },
+        {
+          "text": "help"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "how are you"
+        },
+        {
+          "text": "welcome"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "love",
+      "examples": [
+        {
+          "text": "cute"
+        },
+        {
+          "text": "i love you"
+        },
+        {
+          "text": "you are cute"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "thanking",
+      "examples": [
+        {
+          "text": "thank you"
+        },
+        {
+          "text": "you are good"
+        },
+        {
+          "text": "you are helpful"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "WebInfo",
+      "examples": [
+        {
+          "text": "explain"
+        },
+        {
+          "text": "i dont understand"
+        },
+        {
+          "text": "I need help"
+        },
+        {
+          "text": "interface"
+        },
+        {
+          "text": "tell me"
+        },
+        {
+          "text": "what"
+        },
+        {
+          "text": "what is this"
+        },
+        {
+          "text": "what is this page ?"
+        },
+        {
+          "text": "what is this web page for ?"
+        },
+        {
+          "text": "work"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Diseases",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "corona",
+          "synonyms": [
+            "covid ",
+            "covid 19",
+            "crona",
+            "virus"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1625510866503",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You are welcome :)"
+              },
+              {
+                "text": "I am here to help you, no need to thank me :)"
+              },
+              {
+                "text": "Any time :)"
+              },
+              {
+                "text": "Thank YOU <3"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#thanking",
+      "dialog_node": "node_1_1625677601082",
+      "previous_sibling": "node_5_1625683940706"
+    },
+    {
+      "type": "standard",
+      "title": "greeting",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello, how can I help you ?"
+              },
+              {
+                "text": "I am your assistant, how can I help you ?"
+              },
+              {
+                "text": "its good to see you, do you need a favor ? "
+              },
+              {
+                "text": "Hi, I am willing to help you what do you need ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#greeting",
+      "dialog_node": "node_3_1625510866503",
+      "previous_sibling": "node_6_1625511964147"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "its so nice to meet you, come again :)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#bye",
+      "dialog_node": "node_5_1625683940706",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "web information",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "This web page is for controlling the robot movement  "
+              },
+              {
+                "text": "The remote is for controlling the robot directions while the sliders is for controlling the robot arm"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#WebInfo",
+      "dialog_node": "node_6_1625511964147",
+      "previous_sibling": "node_7_1625512569539"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Oh, I feel shy :'o"
+              },
+              {
+                "text": "Thank you, I am blushing :'D"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#love",
+      "dialog_node": "node_6_1625675946403",
+      "previous_sibling": "node_1_1625677601082"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I am a one week old. Definitely younger than you :D"
+              },
+              {
+                "text": " I am a one week old but I am smart enough to talk to you :D"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#General_About_You",
+      "dialog_node": "node_7_1625512569539",
+      "previous_sibling": "node_7_1625515201275"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I am good how are you :) ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#About_You",
+      "dialog_node": "node_7_1625515201275",
+      "previous_sibling": "node_6_1625675946403"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              },
+              {
+                "text": "Hi, ask me"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "speaking",
+  "language": "en",
+  "description": ""
+}
